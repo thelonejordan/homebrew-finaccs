@@ -6,10 +6,10 @@
 # when the Command Line Tools are out of date, even when nothing gets compiled. A cask installs
 # the prebuilt binary as it is.
 cask "finaccs" do
-  version "0.1.0"
-  sha256 "fdb862300beffc6d910fc9423c113d3ab471f22ea40e42ef6b93f5ee03e7eec5"
+  version "0.2.0"
+  sha256 "c2f3a79462f97cdb76e10fa2457abcdca789cf09652d0f6ca1bd51f65fd51441"
 
-  url "https://github.com/thelonejordan/homebrew-finaccs/releases/download/v0.1.0/finaccs-0.1.0-macos-arm64.tar.gz"
+  url "https://github.com/thelonejordan/homebrew-finaccs/releases/download/v0.2.0/finaccs-0.2.0-macos-arm64.tar.gz"
   name "FinAccs"
   desc "Personal finance, reconciled: bank and card statements in one ledger"
   homepage "https://github.com/thelonejordan/homebrew-finaccs"
