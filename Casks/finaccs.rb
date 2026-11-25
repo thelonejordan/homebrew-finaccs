@@ -15,17 +15,18 @@ cask "finaccs" do
   homepage "https://github.com/thelonejordan/homebrew-finaccs"
 
   depends_on arch: :arm64
-  depends_on macos: ">= :sonoma"
+  # Sonoma or later (Homebrew 5.1.11+; older versions read a bare symbol as exactly that version)
+  depends_on macos: :sonoma
   # For `finaccs tunnel`
   depends_on formula: "cloudflared"
 
   # A compiled build (Nuitka), not source: the binary and the libraries next to it
   binary "finaccs/finaccs"
 
-  # The build isn't notarized, so clear the download quarantine or macOS won't run it and the
-  # libraries it loads
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", staged_path.to_s]
+  # The build isn't notarized, so clear the download quarantine or macOS kills it and the libraries
+  # it loads. Steps run in Homebrew's sandbox (5.1.14+), with paths relative to the staged folder.
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "."], chdir: ".", writable_paths: ["."]
   end
 
   # Only with `brew uninstall --zap finaccs`: deletes all your FinAccs data
